@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>프로젝트 아카이브</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f8fafc;
+      color: #1e293b;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    p.desc {
+      font-size: 0.95rem;
+      color: #64748b;
+      margin-bottom: 2rem;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 1rem;
+    }
+
+    input[type="number"] {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      font-size: 1.1rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      outline: none;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+
+    /* 숫자 입력 스핀 버튼 제거 */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type="number"]:focus {
+      border-color: #2563eb;
+    }
+
+    button {
+      padding: 0.75rem 1.25rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      background-color: #2563eb;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #1d4ed8;
+    }
+
+    .quick-list {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px dashed #e2e8f0;
+      text-align: left;
+    }
+
+    .quick-list h2 {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .quick-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      color: #475569;
+      background-color: #f1f5f9;
+      padding: 4px 10px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .quick-links a:hover {
+      background-color: #e2e8f0;
+      color: #0f172a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Project Archive</h1>
+    <p class="desc">이동할 페이지 번호를 입력하세요.</p>
+
+    <form class="input-group" onsubmit="goToPage(event)">
+      <input 
+        type="number" 
+        id="pageNumber" 
+        placeholder="예: 1 또는 001" 
+        min="1" 
+        max="999" 
+        autofocus 
+        required
+      >
+      <button type="submit">이동</button>
+    </form>
+
+    <div class="quick-list">
+      <h2>Recent Pages</h2>
+      <div class="quick-links">
+        <a href="001.html">#001</a>
+        <a href="002.html">#002</a>
+        <a href="003.html">#003</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function goToPage(event) {
+      event.preventDefault();
+      const inputVal = document.getElementById('pageNumber').value.trim();
+
+      if (!inputVal) return;
+
+      // 1자리 또는 2자리 숫자가 들어오면 3자리(001, 012 등)로 패딩
+      const paddedNumber = String(parseInt(inputVal, 10)).padStart(3, '0');
+      
+      // 해당 번호의 html 파일로 이동
+      window.location.href = `${paddedNumber}.html`;
+    }
+  </script>
+</body>
+</html>
